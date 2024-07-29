@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>made schedule</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <form action="/actual" method="post">
+        <table>
+            <tr>
+                <th>Time slots</th>
+                <th>Predicted</th>
+                <th>Actual</th>
+            </tr>
+            {% for slot in schedule %}
+            <tr>
+                <td>{{ list(slot.keys())[0] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    <h1>TODO:</h1>
+    <ul>
+        <li>make predicted schedule column</li>
+        <li>make actual schedule column</li>
+        <li>make stats when actual schedule column is submitted</li>
+        <li>length of available time slots: {{ length }}</li>
+    </ul>
+</body>
+
+</html>

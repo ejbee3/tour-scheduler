@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tour scheduler</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div>
+        <h1>Instructions</h1>
+        <ul>
+            <li>Close time slots that aren't used</li>
+            <li>Pick staff and their breaks</li>
+            <li>Select breaker (if there is one!)</li>
+            <li>Click submit 🦒</li>
+            <li>Fill out actual schedule to get stats</li>
+        </ul>
+    </div>
+    <form action="/made" method="post" id="scheduleForm">
+        <div>
+            <table id="timeslots">
+                <tr>
+                    <th>Closed?</th>
+                    <th>Time slot</th>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Is working?</th>
+                    <th>Sales shift?</th>
+                    <th>Name</th>
+                    <th>Break start</th>
+                    <th>Break length</th>
+                </tr>
+                {% for person in staff %}
+                <tr>
+                    <td><input type="checkbox" class="all-staff" name="working{{ loop.index0 }}" value="isWorking"></td>
+                    <td><input type="checkbox" name="sales{{ loop.index0 }}" value="isSales"></td>
+                    <td>{{ person }}</td>
+                </tr>
+                {% endfor %}
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Breaker?</th>
+                    <th>Name</th>
+                    <th>Shift start</th>
+                    <th>Shift end</th>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="breaker" value="isBreaker" id=""></td>
+                    <td><select name="breakerName">
+                            <option value=""></option>
+                            {% for person in staff %}
+                            <option value="{{person}}">{{person}}</option>
+                            {% endfor %}
+                        </select></td>
+                    <td><input type="time" name="breakerStart"></td>
+                    <td><input type="time" name="breakerEnd"></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <button type="submit" onclick="submitOpenTimeSlots()">Submit</button>
+        </div>
+    </form>
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"> </script>
+</body>
+
+</html>

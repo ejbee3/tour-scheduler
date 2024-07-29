@@ -1,0 +1,19 @@
+table,
+th,
+td {
+    border: #003300 1px solid;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0.5rem;
+}
+
+li {
+    font-size: 1.5rem;
+}
+
+html {
+    background-color: #ffe5bd;
+    color: #003300;
+}
